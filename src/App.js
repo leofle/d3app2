@@ -1,25 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import * as d3 from 'd3'
+import './App.scss'
+import {StoreContext} from './store'
+import Header from './components/Header/Header'
+import Main from './components/Main/Main'
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      graph: {},
+      msg: ''
+    }
+  }
+	UNSAFE_componentWillMount() {
+		d3.json("flare.json").then(graph => {
+			return this.setState({graph});
+		});
+	}
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <StoreContext.Provider value={{
+          state: this.state,
+          changeText: (event) => {
+            this.setState({msg: event.target.value})
+          },
+        }}>
+          <Header/>
+          <Main/>
+        </StoreContext.Provider>
       </div>
     );
   }
