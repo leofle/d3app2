@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import {StoreContext} from '../../store'
 import DonutChart from '../Graph/Donut'
 import Form from '../Form/Form'
-import {Card, CardFlex, Title} from '../../styles'
+import {Card, CardFlex, DonutContainer, Title} from '../../styles'
 
 const Home = () => (
   <StoreContext.Consumer>
@@ -18,7 +18,9 @@ const Home = () => (
           <Form/>
         </Card>
         <Card>
+        <DonutContainer>
           <DonutChart/>
+        </DonutContainer>
         </Card>
       </Fragment>
     )

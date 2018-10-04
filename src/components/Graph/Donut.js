@@ -32,18 +32,18 @@ const data = pie(
 
 const DonutChart = () => {
   return (
-    <svg width={width} height={height}>
-      <g transform={`translate(${width / 2}, ${height / 2})`}>
-        {data.map(d => (
-          <g className="arc" key={`a${d.data.team}`}>
-            <path d={arc(d)} fill={color(d.data.team)} />
-            <text transform={`translate(${arc.centroid(d)})`} dy=".35em">
-              {d.data.team}
-            </text>
-          </g>
-        ))}
-      </g>
-    </svg>
+      <svg width={width} height={height}>
+        <g transform={`translate(${width / 2}, ${height / 2})`}>
+          {data.map(d => (
+            <g className="arc" key={`a${d.data.team}`}>
+              <path d={arc(d)} fill={color(d.data.team)} />
+              <text transform={`translate(${arc.centroid(d)})`} dy=".35em">
+                {d.data.team}
+              </text>
+            </g>
+          ))}
+        </g>
+      </svg>
   );
 };
 

@@ -56,4 +56,11 @@ const Input = styled.input`
 		}
 `;
 
-export {Body, Container, Title, Card, CardFlex, Input};
+const DonutContainer = styled.div`
+		svg {
+			margin: auto;
+			display: inherit;
+		}
+`;
+
+export {Body, Container, DonutContainer ,Title, Card, CardFlex, Input};
