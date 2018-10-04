@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import * as d3 from 'd3'
 import { scaleOrdinal } from 'd3-scale';
 import {StoreContext} from '../../store';
-import Links from './Links';
-import Nodes from './Nodes';
 
 export default class GraphSvg extends Component {
 
@@ -28,7 +26,7 @@ export default class GraphSvg extends Component {
 	}
 
 	draw() {
-		console.log(StoreContext._currentValue.state)
+
 		let svg = d3.select("svg"),
 			width = +svg.attr("width"),
 			height = +svg.attr("height");
@@ -169,8 +167,8 @@ export default class GraphSvg extends Component {
 			{(context) =>
 			<svg style={{ width: '100%', height: '100vh' }} width={width} height={height}>
 				<g className="container">
-					<Links data={context.links}/>
-					<Nodes data={context.nodes} />
+					<g className="links"></g>
+					<g className="nodes"></g>
 				</g>
 			</svg>
 			}
