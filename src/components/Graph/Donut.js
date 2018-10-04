@@ -20,12 +20,12 @@ const arc = d3Arc()
 const pie = d3Pie()
   .sort(null)
   .value(function(d) {
-    return d.population;
+    return d.wins;
   });
 
 const data = pie(
   csvParse(dataCsv, d => {
-    d.population = +d.population;
+    d.wins = +d.wins;
     return d;
   })
 );
@@ -35,10 +35,10 @@ const DonutChart = () => {
     <svg width={width} height={height}>
       <g transform={`translate(${width / 2}, ${height / 2})`}>
         {data.map(d => (
-          <g className="arc" key={`a${d.data.age}`}>
-            <path d={arc(d)} fill={color(d.data.age)} />
+          <g className="arc" key={`a${d.data.team}`}>
+            <path d={arc(d)} fill={color(d.data.team)} />
             <text transform={`translate(${arc.centroid(d)})`} dy=".35em">
-              {d.data.age}
+              {d.data.team}
             </text>
           </g>
         ))}
