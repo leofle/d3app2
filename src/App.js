@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      data: [],
       graph: {},
       msg: ''
     }
@@ -17,6 +18,10 @@ class App extends Component {
 	UNSAFE_componentWillMount() {
 		d3.json("flare.json").then(graph => {
 			return this.setState({graph});
+    });
+    
+    d3.json("data.json").then(data => {
+			return this.setState({data});
 		});
 	}
 

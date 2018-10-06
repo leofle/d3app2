@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const store = {
+  data: [],
   graph: {
     nodes: [],
     links: [],
@@ -10,6 +11,7 @@ export const store = {
 
 export const StoreContext = React.createContext({
   state: {
+    data: store.data,
     graph: store.graph,
     msg: store.msg,
   }

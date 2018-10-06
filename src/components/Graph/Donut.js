@@ -1,50 +1,78 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
 import * as d3 from 'd3'
 import { scaleOrdinal } from 'd3-scale'
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape'
-import { csvParse } from 'd3-dsv'
 
-// Same as data.csv
-import dataCsv from './data'
+class DonutChart extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      width: props.width,
+      height: props.height,
+      data: props.data.data,
+      country: '',
+      wins: 0
+    }
+  }
 
-const width = 960,
-  height = 500,
-  radius = Math.min(width, height) / 2;
+  addCountry = ()=>{
+    const {country, wins} = this.state;
+      let data = [...this.state.data,{
+        "team": country,
+        "wins": wins
+      }]
+      this.setState({data})
+  }
+  changeCountry = (event)=>{
+      this.setState({country: event.target.value})
+  }
+  changeWins = (event)=>{
+      this.setState({wins: event.target.value})
+  }
+  render() {
+    const {width, height} = this.state;
+    const radius = Math.min(width, height) / 2;
 
-const color = scaleOrdinal(d3.schemeSet3);
+    const color = scaleOrdinal(d3.schemeSet3);
 
-const arc = d3Arc()
-  .outerRadius(radius - 10)
-  .innerRadius(radius - 70);
+    const arc = d3Arc()
+      .outerRadius(radius - 10)
+      .innerRadius(radius - 70);
 
-const pie = d3Pie()
-  .sort(null)
-  .value(function(d) {
-    return d.wins;
-  });
+    const pie = d3Pie()
+      .sort(null)
+      .value(function (d) {
+        return d.wins;
+      });
 
-const data = pie(
-  csvParse(dataCsv, d => {
-    d.wins = +d.wins;
-    return d;
-  })
-);
+    let data = pie(this.state.data);
 
-const DonutChart = () => {
-  return (
-      <svg width={width} height={height}>
-        <g transform={`translate(${width / 2}, ${height / 2})`}>
-          {data.map(d => (
-            <g className="arc" key={`a${d.data.team}`}>
-              <path d={arc(d)} fill={color(d.data.team)} />
-              <text transform={`translate(${arc.centroid(d)})`} dy=".35em">
-                {d.data.team}
-              </text>
-            </g>
-          ))}
-        </g>
-      </svg>
-  );
+    return (
+      <Fragment>
+        <svg width={width} height={height}>
+          <g transform={`translate(${width / 2}, ${height / 2})`}>
+            {data.map(d => (
+              <g className="arc" key={`a${d.data.team}`}>
+                <path d={arc(d)} fill={color(d.data.team)} />
+                <text transform={`translate(${arc.centroid(d)})`} dy=".35em">
+                  {d.data.team}
+                </text>
+              </g>
+            ))}
+          </g>
+        </svg>
+        <input type="text" 
+          name="country"
+          onChange={this.changeCountry}
+        />
+        <input type="text" 
+          name="wins"
+          onChange={this.changeWins}
+        />
+        <button onClick={this.addCountry}>Add</button>
+      </Fragment>
+    );
+  }
 };
 
 export default DonutChart;
