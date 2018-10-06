@@ -18,6 +18,7 @@ class DonutChart extends Component {
 
   addCountry = ()=>{
     const {country, wins} = this.state;
+    if(!country || !wins) return;
       let data = [...this.state.data,{
         "team": country,
         "wins": wins
