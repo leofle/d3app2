@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import * as d3 from 'd3'
 import { scaleOrdinal } from 'd3-scale'
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape'
+import {Button, Flex, InputDonut} from '../../styles'
 
 class DonutChart extends Component {
   constructor(props){
@@ -61,15 +62,19 @@ class DonutChart extends Component {
             ))}
           </g>
         </svg>
-        <input type="text" 
-          name="country"
-          onChange={this.changeCountry}
-        />
-        <input type="text" 
-          name="wins"
-          onChange={this.changeWins}
-        />
-        <button onClick={this.addCountry}>Add</button>
+        <Flex>
+          <InputDonut type="text" 
+            name="country"
+            placeholder="Add Country"
+            onChange={this.changeCountry}
+          />
+          <InputDonut type="text" 
+            name="wins"
+            placeholder="Add Wins"
+            onChange={this.changeWins}
+          />
+          <Button color="cyan" onClick={this.addCountry}>Add</Button>
+        </Flex>
         <p>{this.state.country} {this.state.wins}</p>
       </Fragment>
     );

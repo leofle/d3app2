@@ -63,4 +63,28 @@ const DonutContainer = styled.div`
 		}
 `;
 
-export {Body, Container, DonutContainer ,Title, Card, CardFlex, Input};
+const Button = styled.button`
+		background: ${props=> props.color? props.color : 'hotpink'};
+		height: 40px;
+    border: none;
+    border-radius: 6px;
+    margin: 4px;
+		outline:none;
+`;
+
+const InputDonut = styled.input`
+		height: 33px;
+    outline: none;
+    line-height: 30px;
+    font-size: 14px;
+    margin: 2px;
+		padding: 0 10px;
+`;
+
+const Flex = styled.div`
+		display: flex;
+		flex-flow: row;
+    align-items: center;
+`;
+
+export {Body, Button, Container, DonutContainer ,Title, Card, CardFlex, Flex, Input, InputDonut};
