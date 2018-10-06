@@ -70,6 +70,7 @@ class DonutChart extends Component {
           onChange={this.changeWins}
         />
         <button onClick={this.addCountry}>Add</button>
+        <p>{this.state.country} {this.state.wins}</p>
       </Fragment>
     );
   }
