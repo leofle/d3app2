@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import {StoreContext} from '../../store'
-import DonutChart from '../Graph/Donut'
+import DonutChart from '../Donut/Donut'
 import Form from '../Form/Form'
 import {Card, CardFlex, DonutContainer, Title} from '../../styles'
 
