@@ -12,7 +12,9 @@ class App extends Component {
     this.state = {
       data: [],
       graph: {},
-      msg: ''
+      msg: '',
+      country: '',
+      wins: null
     }
   }
 	UNSAFE_componentWillMount() {
@@ -33,6 +35,27 @@ class App extends Component {
           changeText: (event) => {
             this.setState({msg: event.target.value})
           },
+          changeCountry: (event)=>{
+            this.setState({country: event.target.value});
+          },
+          changeWins: (event)=>{
+            this.setState({wins: Number(event.target.value)});
+          },
+          addCountry: ()=>{
+            const {country, wins} = this.state;
+            if(!country || !wins) return;
+              let data = [...this.state.data,{
+                "team": country,
+                "wins": wins
+              }]
+            this.setState({data, country: '', wins: null})
+          },
+          removeCountry: ()=> {
+            const {country} = this.state;
+            if(!country) return;
+              let data = this.state.data.filter( el => el.team !== country );
+              this.setState({data})
+          }
         }}>
           <Header/>
           <Main/>

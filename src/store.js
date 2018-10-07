@@ -6,7 +6,9 @@ export const store = {
     nodes: [],
     links: [],
   },
-  msg:''
+  msg:'',
+  country: '',
+  wins: null
 };
 
 export const StoreContext = React.createContext({
@@ -14,5 +16,7 @@ export const StoreContext = React.createContext({
     data: store.data,
     graph: store.graph,
     msg: store.msg,
+    country: store.country,
+    wins: store.wins
   }
 });

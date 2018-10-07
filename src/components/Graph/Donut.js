@@ -3,6 +3,7 @@ import * as d3 from 'd3'
 import { scaleOrdinal } from 'd3-scale'
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape'
 import {Button, Flex, InputDonut} from '../../styles'
+import {StoreContext} from '../../store'
 
 class DonutChart extends Component {
   constructor(props){
@@ -10,33 +11,18 @@ class DonutChart extends Component {
     this.state = {
       width: props.width,
       height: props.height,
-      data: props.data.data,
+      data: props.data,
       country: '',
       wins: null
     }
   }
+  componentDidUpdate(prevProps){
+    const {data} = this.props;
+    if(data.length !== prevProps.data.length){
+      this.setState({data});
+    }
+  }
 
-  addCountry = ()=>{
-    const {country, wins} = this.state;
-    if(!country || !wins) return;
-      let data = [...this.state.data,{
-        "team": country,
-        "wins": wins
-      }]
-    this.setState({data, country: '', wins: null})
-  }
-  removeCountry = ()=> {
-    const {country} = this.state;
-    if(!country) return;
-      let data = this.state.data.filter( el => el.team !== country );
-      this.setState({data})
-  }
-  changeCountry = (event)=>{
-      this.setState({country: event.target.value});
-  }
-  changeWins = (event)=>{
-      this.setState({wins: event.target.value});
-  }
   render() {
     const {width, height} = this.state;
     const radius = Math.min(width, height) / 2;
@@ -56,6 +42,8 @@ class DonutChart extends Component {
     let data = pie(this.state.data);
 
     return (
+      <StoreContext.Consumer>
+      {({state, changeCountry, changeWins, addCountry, removeCountry})=> (
       <Fragment>
         <svg width={width} height={height}>
           <g transform={`translate(${width / 2}, ${height / 2})`}>
@@ -73,18 +61,21 @@ class DonutChart extends Component {
           <InputDonut type="text" 
             name="country"
             placeholder="Add Country"
-            onChange={this.changeCountry}
+            onChange={changeCountry}
           />
-          <InputDonut type="text" 
+          <InputDonut type="number" 
             name="wins"
             placeholder="Add Wins"
-            onChange={this.changeWins}
+            onChange={changeWins}
           />
-          <Button color="greenyellow" onClick={this.addCountry}>Add</Button>
-          <Button onClick={this.removeCountry}>Remove</Button>
+          <Button color="greenyellow" onClick={addCountry}>Add</Button>
+          <Button onClick={removeCountry}>Remove</Button>
         </Flex>
-        <p>{this.state.country} {this.state.wins}</p>
+        <p>{state.country} {state.wins}</p>
       </Fragment>
+          )
+        }
+      </StoreContext.Consumer>
     );
   }
 };

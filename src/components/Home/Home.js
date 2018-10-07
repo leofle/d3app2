@@ -19,7 +19,7 @@ const Home = () => (
         </Card>
         <Card>
         <DonutContainer>
-          <DonutChart width={960} height={500} data={state}/>
+          <DonutChart width={960} height={500} data={state.data}/>
         </DonutContainer>
         </Card>
       </Fragment>
