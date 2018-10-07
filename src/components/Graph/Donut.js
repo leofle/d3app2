@@ -23,7 +23,7 @@ class DonutChart extends Component {
         "team": country,
         "wins": wins
       }]
-      this.setState({data})
+    this.setState({data, country: '', wins: null})
   }
   removeCountry = ()=> {
     const {country} = this.state;
@@ -32,10 +32,10 @@ class DonutChart extends Component {
       this.setState({data})
   }
   changeCountry = (event)=>{
-      this.setState({country: event.target.value})
+      this.setState({country: event.target.value});
   }
   changeWins = (event)=>{
-      this.setState({wins: event.target.value})
+      this.setState({wins: event.target.value});
   }
   render() {
     const {width, height} = this.state;

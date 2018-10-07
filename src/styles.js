@@ -93,6 +93,7 @@ const Flex = styled.div`
 		display: flex;
 		flex-flow: row;
     align-items: center;
+		justify-content: center;
 `;
 
 export {Body, Button, Container, DonutContainer ,Title, Card, CardFlex, Flex, Input, InputDonut};
