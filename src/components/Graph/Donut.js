@@ -25,6 +25,12 @@ class DonutChart extends Component {
       }]
       this.setState({data})
   }
+  removeCountry = ()=> {
+    const {country} = this.state;
+    if(!country) return;
+      let data = this.state.data.filter( el => el.team !== country );
+      this.setState({data})
+  }
   changeCountry = (event)=>{
       this.setState({country: event.target.value})
   }
@@ -75,6 +81,7 @@ class DonutChart extends Component {
             onChange={this.changeWins}
           />
           <Button color="cyan" onClick={this.addCountry}>Add</Button>
+          <Button onClick={this.removeCountry}>Remove</Button>
         </Flex>
         <p>{this.state.country} {this.state.wins}</p>
       </Fragment>
