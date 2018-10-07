@@ -64,12 +64,20 @@ const DonutContainer = styled.div`
 `;
 
 const Button = styled.button`
-		background: ${props=> props.color? props.color : 'hotpink'};
+		background: ${props=> props.color? props.color : 'tomato'};
 		height: 40px;
     border: none;
     border-radius: 6px;
     margin: 4px;
 		outline:none;
+		font-weight: bold;
+    font-size: 13px;
+		width: 100px;
+		&:hover {
+			background: #000;
+			color: #fff;
+			cursor: pointer;
+		}
 `;
 
 const InputDonut = styled.input`

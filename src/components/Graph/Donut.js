@@ -80,7 +80,7 @@ class DonutChart extends Component {
             placeholder="Add Wins"
             onChange={this.changeWins}
           />
-          <Button color="cyan" onClick={this.addCountry}>Add</Button>
+          <Button color="greenyellow" onClick={this.addCountry}>Add</Button>
           <Button onClick={this.removeCountry}>Remove</Button>
         </Flex>
         <p>{this.state.country} {this.state.wins}</p>
