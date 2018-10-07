@@ -12,7 +12,7 @@ class DonutChart extends Component {
       height: props.height,
       data: props.data.data,
       country: '',
-      wins: 0
+      wins: null
     }
   }
 
