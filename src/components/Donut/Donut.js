@@ -4,8 +4,16 @@ import { scaleOrdinal } from 'd3-scale'
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape'
 import {Button, Flex, InputDonut} from '../../styles'
 import {StoreContext} from '../../store'
+import PropTypes from 'prop-types';
 
 class DonutChart extends Component {
+  static propTypes = {
+    data: PropTypes.arrayOf(
+      PropTypes.shape({})
+    ).isRequired,
+    width: PropTypes.number,
+    height: PropTypes.number
+  }
   constructor(props){
     super(props);
     this.state = {
