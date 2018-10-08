@@ -8321,6 +8321,11 @@ react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
+react-waterfall@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-waterfall/-/react-waterfall-4.0.0.tgz#035415783ba96fd7d9f5c37782c3549fa0c4887c"
+  integrity sha512-q1mk1qaWE3RoddunhDgBbNtP6Mhaz2uZfPM5fJ6iFZZD8hdjxKsxp3ld3HDf4K+292wsm/S6UemLlB0hgskq7Q==
+
 react@^16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"

@@ -1,4 +1,5 @@
 import React from 'react'
+import createStore from 'react-waterfall'
 
 export const store = {
   data: [],
@@ -20,3 +21,22 @@ export const StoreContext = React.createContext({
     wins: store.wins
   }
 });
+
+
+const config = {
+  initialState: { 
+    data: [],
+    graph: {
+      nodes: [],
+      links: [],
+    },
+    msg:'',
+    country: '',
+    wins: null
+  },
+  actionsCreators: {
+    changeText: (event) => ({msg: event.target.value}),
+  },
+}
+
+export const { Provider, Consumer, connect, actions } = createStore(config)
